@@ -1,7 +1,7 @@
 # blueheart
-还没想好整什么，搭个架子玩哦
-####新建springboot项目
-####集成Mybatis plus
+还没想好整什么，搭个架子玩哦  
+####新建springboot项目  
+####集成Mybatis plus  
 ######导如依赖
 <dependencies>
   <dependency>

@@ -9,14 +9,14 @@
  */
 package com.heart.blue.sysuser.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.heart.blue.sysuser.entity.SysUser;
 import com.heart.blue.sysuser.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -34,13 +34,14 @@ public class SysUserController {
     private ISysUserService sysUserService;
 
     /**
-     * 查询用户信息列表
+     * 分页查询用户信息列表
      * @return
      */
     @RequestMapping(value = "/searchUserList",method = RequestMethod.GET)
     public String searchUserList(){
-        List<SysUser> list = sysUserService.list();
-        System.err.println(list.toString());
+        Page<SysUser> page = new Page<SysUser>();
+        page = sysUserService.selectUserWithPage(page,new EntityWrapper<>());
+        System.err.println(page.getRecords().size());
         return "userList";
     }
 }
