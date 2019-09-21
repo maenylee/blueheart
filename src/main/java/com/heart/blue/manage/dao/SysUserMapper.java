@@ -1,8 +1,7 @@
-package com.heart.blue.sysuser.dao;
+package com.heart.blue.manage.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.heart.blue.sysuser.entity.SysUser;
-import org.springframework.stereotype.Repository;
+import com.heart.blue.manage.entity.SysUser;
 
 /**
  * <p>
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Repository;
  * @author Danny
  * @since 2019-08-23
  */
-@Repository
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 }

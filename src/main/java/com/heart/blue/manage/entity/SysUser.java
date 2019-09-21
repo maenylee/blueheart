@@ -1,4 +1,4 @@
-package com.heart.blue.sysuser.entity;
+package com.heart.blue.manage.entity;
 
 import com.baomidou.mybatisplus.annotations.*;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -23,7 +23,20 @@ import java.time.LocalDateTime;
 public class SysUser implements Serializable {
 
     private static final long serialVersionUID=1L;
-
+    public static final String ID = "id";
+    public static final String USER_NAME = "user_name";
+    public static final String REAL_NAME = "real_name";
+    public static final String PASSWORD = "password";
+    public static final String SEX = "sex";
+    public static final String AGE = "age";
+    public static final String ADDRESS = "address";
+    public static final String QQ = "qq";
+    public static final String PHONE_NUMBER = "phone_number";
+    public static final String REGISTER_IP = "register_ip";
+    public static final String GRADUATE_SCHOOL = "graduate_school";
+    public static final String STATUS = "status";
+    public static final String GMT_CREATE = "gmt_create";
+    public static final String GMT_MODIFY = "gmt_modify";
     /**
      * {name:"主键"}
      */
@@ -107,34 +120,5 @@ public class SysUser implements Serializable {
      */
     @TableField("gmt_modify")
     private LocalDateTime gmtModify;
-
-
-    public static final String ID = "id";
-
-    public static final String USER_NAME = "user_name";
-
-    public static final String REAL_NAME = "real_name";
-
-    public static final String PASSWORD = "password";
-
-    public static final String SEX = "sex";
-
-    public static final String AGE = "age";
-
-    public static final String ADDRESS = "address";
-
-    public static final String QQ = "qq";
-
-    public static final String PHONE_NUMBER = "phone_number";
-
-    public static final String REGISTER_IP = "register_ip";
-
-    public static final String GRADUATE_SCHOOL = "graduate_school";
-
-    public static final String STATUS = "status";
-
-    public static final String GMT_CREATE = "gmt_create";
-
-    public static final String GMT_MODIFY = "gmt_modify";
 
 }

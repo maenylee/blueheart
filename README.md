@@ -3,11 +3,12 @@
 ####新建springboot项目  
 ####集成Mybatis plus  
 ######导如依赖
+```
 <dependencies>
   <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-boot-starter</artifactId>
-      <version>最新版本号</version>
+      <version>版本号(本项目采用2.x版本)</version>
   </dependency>
 </dependencies>
 <!-- 如果mapper.xml是放在src/main/java目录下，需配置以下-->
@@ -22,3 +23,4 @@
       </resource>
   </resources>
 </build>
+```

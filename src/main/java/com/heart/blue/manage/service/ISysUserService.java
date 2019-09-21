@@ -1,9 +1,9 @@
-package com.heart.blue.sysuser.service;
+package com.heart.blue.manage.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
-import com.heart.blue.sysuser.entity.SysUser;
+import com.heart.blue.manage.entity.SysUser;
 
 /**
  * <p>

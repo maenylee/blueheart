@@ -1,16 +1,16 @@
-package com.heart.blue.sysuser.service.impl;
+package com.heart.blue.manage.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.heart.blue.sysuser.dao.SysUserMapper;
-import com.heart.blue.sysuser.entity.SysUser;
-import com.heart.blue.sysuser.service.ISysUserService;
+import com.heart.blue.manage.dao.SysUserMapper;
+import com.heart.blue.manage.entity.SysUser;
+import com.heart.blue.manage.service.ISysUserService;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ *  用户服务实现类
  * </p>
  *
  * @author Danny

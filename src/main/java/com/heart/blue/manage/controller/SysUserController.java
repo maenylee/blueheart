@@ -7,12 +7,12 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.heart.blue.sysuser.controller;
+package com.heart.blue.manage.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.heart.blue.sysuser.entity.SysUser;
-import com.heart.blue.sysuser.service.ISysUserService;
+import com.heart.blue.manage.entity.SysUser;
+import com.heart.blue.manage.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +41,7 @@ public class SysUserController {
     public String searchUserList(){
         Page<SysUser> page = new Page<SysUser>();
         page = sysUserService.selectUserWithPage(page,new EntityWrapper<>());
-        System.err.println(page.getRecords().size());
+        System.err.println(page.getRecords());
         return "userList";
     }
 }
