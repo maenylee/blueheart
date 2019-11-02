@@ -1,9 +1,9 @@
 package com.heart.blue.manage.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.heart.blue.manage.dao.SysPermissionMapper;
-import com.heart.blue.manage.entity.SysPermission;
-import com.heart.blue.manage.service.ISysPermissionService;
+import com.heart.blue.manage.dao.PermissionMapper;
+import com.heart.blue.manage.entity.Permission;
+import com.heart.blue.manage.service.IPermissionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  * @since 2019-09-21
  */
 @Service
-public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, SysPermission> implements ISysPermissionService {
+public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
     /**
      * 根据角色查询权限菜单标识
      * @param roleId

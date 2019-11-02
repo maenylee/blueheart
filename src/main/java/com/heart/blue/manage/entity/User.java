@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysUser implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID=1L;
     public static final String ID = "id";

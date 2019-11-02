@@ -11,8 +11,8 @@ package com.heart.blue.manage.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.heart.blue.manage.entity.SysUser;
-import com.heart.blue.manage.service.ISysUserService;
+import com.heart.blue.manage.entity.User;
+import com.heart.blue.manage.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/sysuser")
-public class SysUserController {
+@RequestMapping("/user")
+public class UserController {
 
     @Autowired
-    private ISysUserService sysUserService;
+    private IUserService userService;
 
     /**
      * 分页查询用户信息列表
@@ -39,8 +39,8 @@ public class SysUserController {
      */
     @RequestMapping(value = "/searchUserList",method = RequestMethod.GET)
     public String searchUserList(){
-        Page<SysUser> page = new Page<SysUser>();
-        page = sysUserService.selectUserWithPage(page,new EntityWrapper<>());
+        Page<User> page = new Page<User>();
+        page = userService.selectUserWithPage(page,new EntityWrapper<>());
         System.err.println(page.getRecords());
         return "userList";
     }

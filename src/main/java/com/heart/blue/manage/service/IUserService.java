@@ -3,7 +3,7 @@ package com.heart.blue.manage.service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
-import com.heart.blue.manage.entity.SysUser;
+import com.heart.blue.manage.entity.User;
 
 /**
  * <p>
@@ -13,11 +13,11 @@ import com.heart.blue.manage.entity.SysUser;
  * @author Danny
  * @since 2019-08-23
  */
-public interface ISysUserService extends IService<SysUser> {
+public interface IUserService extends IService<User> {
     /**
      * 分页查询用户信息
      * @param page
      * @return
      */
-    Page<SysUser> selectUserWithPage(Page<SysUser> page, EntityWrapper<SysUser> entityWrapper);
+    Page<User> selectUserWithPage(Page<User> page, EntityWrapper<User> entityWrapper);
 }

@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysPermission implements Serializable {
+public class Permission implements Serializable {
 
     private static final long serialVersionUID=1L;
     public static final String ID = "id";

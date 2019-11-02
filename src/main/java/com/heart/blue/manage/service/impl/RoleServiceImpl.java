@@ -1,9 +1,9 @@
 package com.heart.blue.manage.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.heart.blue.manage.dao.SysRoleMapper;
-import com.heart.blue.manage.entity.SysRole;
-import com.heart.blue.manage.service.ISysRoleService;
+import com.heart.blue.manage.dao.RoleMapper;
+import com.heart.blue.manage.entity.Role;
+import com.heart.blue.manage.service.IRoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +17,14 @@ import java.util.List;
  * @since 2019-09-21
  */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements ISysRoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
     /**
      * 查询用户角色标识
      * @param userId
      * @return
      */
     @Override
-    public List<SysRole> listRoles(Integer userId) {
+    public List<Role> listRoles(Integer userId) {
         return baseMapper.selectRoleTypes(userId);
     }
 }

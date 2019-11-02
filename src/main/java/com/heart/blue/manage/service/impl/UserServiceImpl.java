@@ -3,9 +3,9 @@ package com.heart.blue.manage.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.heart.blue.manage.dao.SysUserMapper;
-import com.heart.blue.manage.entity.SysUser;
-import com.heart.blue.manage.service.ISysUserService;
+import com.heart.blue.manage.dao.UserMapper;
+import com.heart.blue.manage.entity.User;
+import com.heart.blue.manage.service.IUserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @since 2019-08-23
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     /**
      * 分页查询用户信息
@@ -25,7 +25,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public Page<SysUser> selectUserWithPage(Page<SysUser> page,EntityWrapper<SysUser> entityWrapper) {
+    public Page<User> selectUserWithPage(Page<User> page, EntityWrapper<User> entityWrapper) {
         return this.selectPage(page,new EntityWrapper<>());
     }
 }

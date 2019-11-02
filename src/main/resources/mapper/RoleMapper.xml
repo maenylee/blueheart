@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heart.blue.manage.dao.SysRoleMapper">
+<mapper namespace="com.heart.blue.manage.dao.RoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.heart.blue.manage.entity.SysRole">
+    <resultMap id="BaseResultMap" type="com.heart.blue.manage.entity.Role">
         <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="role_name" property="roleName" />
@@ -13,9 +13,10 @@
         <result column="gmt_create" property="gmtCreate" />
         <result column="gmt_modify" property="gmtModify" />
     </resultMap>
-    <select id="selectRoleTypes" parameterType="java.lang.Integer" resultType="SysRole">
+    <select id="selectRoleTypes" parameterType="java.lang.Integer" resultType="Role">
         SELECT sr.id,sr.role_type as roleType
-        FROM sys_role sr,sys_user_role sur
-        WHERE sr.id = sur.role_id AND sur.user_id = #{userId}
+        FROM tb_role sr,tb_user_role sur
+        WHERE sr.id = sur.role_id
+        AND sur.user_id = #{userId}
     </select>
 </mapper>

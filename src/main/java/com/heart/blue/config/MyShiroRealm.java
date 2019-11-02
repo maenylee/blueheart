@@ -10,11 +10,11 @@
 package com.heart.blue.config;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.heart.blue.manage.entity.SysRole;
-import com.heart.blue.manage.entity.SysUser;
-import com.heart.blue.manage.service.ISysPermissionService;
-import com.heart.blue.manage.service.ISysRoleService;
-import com.heart.blue.manage.service.ISysUserService;
+import com.heart.blue.manage.entity.Role;
+import com.heart.blue.manage.entity.User;
+import com.heart.blue.manage.service.IPermissionService;
+import com.heart.blue.manage.service.IRoleService;
+import com.heart.blue.manage.service.IUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -36,13 +36,13 @@ import java.util.stream.Collectors;
 public class MyShiroRealm extends AuthorizingRealm {
 
     @Autowired
-    private ISysUserService sysUserService;
+    private IUserService userService;
 
     @Autowired
-    private ISysRoleService sysRoleService;
+    private IRoleService roleService;
 
     @Autowired
-    private ISysPermissionService sysPermissionService;
+    private IPermissionService permissionService;
 
     /**
      * 授权
@@ -55,15 +55,15 @@ public class MyShiroRealm extends AuthorizingRealm {
         //创建授权信息对象
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         //获取当前用户
-        SysUser user = (SysUser) ShiroUtils.getAttribute("user");
+        User user = (User) ShiroUtils.getAttribute("user");
         //根据用户ID获取用户角色标识
-        List<SysRole> sysRoles = sysRoleService.listRoles(user.getId());
+        List<Role> sysRoles = roleService.listRoles(user.getId());
         List<String> roleTypes = sysRoles.stream().map(item->item.getRoleType()).collect(Collectors.toList());
         System.err.println(roleTypes.toString());
         simpleAuthorizationInfo.addRoles(roleTypes);
         //根据角色获取用户权限标识
         List<Integer> roleIds = sysRoles.stream().map(item->item.getId()).collect(Collectors.toList());
-        List<String> permTypes = sysPermissionService.listPermType(roleIds);
+        List<String> permTypes = permissionService.listPermType(roleIds);
         System.err.println(permTypes.toString());
         simpleAuthorizationInfo.addStringPermissions(permTypes);
         return simpleAuthorizationInfo;
@@ -80,7 +80,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         System.err.println("认证中...");
         UsernamePasswordToken upt = (UsernamePasswordToken)token;
         String account = upt.getUsername();
-        SysUser user = sysUserService.selectOne(new EntityWrapper<SysUser>().eq(SysUser.USER_NAME,account));
+        User user = userService.selectOne(new EntityWrapper<User>().eq(User.USER_NAME,account));
         if(user != null){
             ShiroUtils.setAttribute("user",user);
             return new SimpleAuthenticationInfo(account,user.getPassword(),getName());

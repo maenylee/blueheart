@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heart.blue.manage.dao.SysPermissionMapper">
+<mapper namespace="com.heart.blue.manage.dao.PermissionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.heart.blue.manage.entity.SysPermission">
+    <resultMap id="BaseResultMap" type="com.heart.blue.manage.entity.Permission">
         <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="perm_name" property="permName" />
@@ -17,7 +17,7 @@
     </resultMap>
     <select id="selectPermTypes" parameterType="java.util.List" resultType="java.lang.String">
         SELECT sp.perm_type
-        FROM sys_permission sp, sys_perm_role spr
+        FROM tb_permission sp, tb_perm_role spr
         WHERE sp.id = spr.perm_id
         AND spr.role_id IN
             <foreach collection="list" index="index" item="item" separator="," open="(" close=")">

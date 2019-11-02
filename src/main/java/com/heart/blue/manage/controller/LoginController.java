@@ -10,7 +10,7 @@
 package com.heart.blue.manage.controller;
 
 import com.heart.blue.config.ShiroUtils;
-import com.heart.blue.manage.entity.SysUser;
+import com.heart.blue.manage.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -41,7 +41,7 @@ public class LoginController {
     public ModelAndView index(){
         ModelAndView mv = new ModelAndView();
         //获取用户信息
-        SysUser sysUser = (SysUser) ShiroUtils.getAttribute("user");
+        User sysUser = (User) ShiroUtils.getAttribute("user");
         mv.setViewName("index");
         mv.addObject("user",sysUser);
         return mv;

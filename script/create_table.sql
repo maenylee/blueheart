@@ -4,8 +4,8 @@ CREATE DATABASE `blueheart`;
 
 -- 创建用户表
 
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user` (
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user` (
   `id`           INTEGER NOT NULL AUTO_INCREMENT COMMENT '{name:"主键"}',
   `user_name`    VARCHAR(64)  NOT NULL COMMENT '{name:"用户名"}',
   `real_name`    VARCHAR(32)  DEFAULT NULL COMMENT '{name:"真实名称"}',
@@ -25,8 +25,8 @@ CREATE TABLE `sys_user` (
 
 -- 创建角色表
 
-DROP TABLE IF EXISTS `sys_role`;
-CREATE TABLE `sys_role`(
+DROP TABLE IF EXISTS `tb_role`;
+CREATE TABLE `tb_role`(
   `id`           INTEGER NOT NULL AUTO_INCREMENT COMMENT '{name:"主键"}',
   `parent_id`    INTEGER NOT NULL COMMENT '{name:"父ID.0表示根ID"}',
   `role_name`    VARCHAR(64)  NOT NULL COMMENT '{name:"角色名称"}',
@@ -40,8 +40,8 @@ CREATE TABLE `sys_role`(
 
 -- 创建用户角色表
 
-DROP TABLE IF EXISTS `sys_user_role`;
-CREATE TABLE `sys_user_role`(
+DROP TABLE IF EXISTS `tb_user_role`;
+CREATE TABLE `tb_user_role`(
   `id`         INTEGER NOT NULL AUTO_INCREMENT COMMENT '{name:"主键"}',
   `user_id`    INTEGER NOT NULL COMMENT '{name:"用户ID"}',
   `role_id`    INTEGER NOT NULL COMMENT '{name:"角色ID"}',
@@ -52,8 +52,8 @@ CREATE TABLE `sys_user_role`(
 
 -- 创建权限（菜单）表
 
-DROP TABLE IF EXISTS `sys_permission`;
-CREATE TABLE `sys_permission`(
+DROP TABLE IF EXISTS `tb_permission`;
+CREATE TABLE `tb_permission`(
   `id`           INTEGER NOT NULL AUTO_INCREMENT COMMENT '{name:"主键"}',
   `parent_id`    INTEGER NOT NULL COMMENT '{name:"父ID。0表示根ID"}',
   `perm_name`    VARCHAR(64)  NOT NULL COMMENT '{name:"权限名称"}',
@@ -69,12 +69,29 @@ CREATE TABLE `sys_permission`(
 
 -- 创建权限角色表
 
-DROP TABLE IF EXISTS `sys_perm_role`;
-CREATE TABLE `sys_perm_role`(
+DROP TABLE IF EXISTS `tb_perm_role`;
+CREATE TABLE `tb_perm_role`(
   `id`         INTEGER NOT NULL AUTO_INCREMENT COMMENT '{name:"主键"}',
   `role_id`    INTEGER NOT NULL COMMENT '{name:"角色ID"}',
   `perm_id`    INTEGER NOT NULL COMMENT '{name:"权限ID"}',
   `gmt_create`   DATETIME    NOT NULL COMMENT '{name:"创建时间"}',
   `gmt_modify`   TIMESTAMP    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '{name:"更新时间"}',
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 日志信息
+
+DROP TABLE IF EXISTS `tb_log`;
+CREATE TABLE `tb_log`(
+  `id`         INTEGER NOT NULL AUTO_INCREMENT COMMENT '{name:"主键"}',
+  `request_url`    VARCHAR(255) NOT NULL COMMENT '{name:"请求地址"}',
+  `request_ip`    VARCHAR(255) NOT NULL COMMENT '{name:"请求Ip"}',
+  `method_name`    VARCHAR(255) NOT NULL COMMENT '{name:"方法名称"}',
+  `method_desc`    VARCHAR(255) NOT NULL COMMENT '{name:"方法描述"}',
+  `request_param`  VARCHAR(2048) COMMENT '{name:"请求参数"}',
+  `exec_time`    INTEGER NOT NULL COMMENT '{name:"执行方法时间"}',
+  `error_message`  VARCHAR(2048) NOT NULL COMMENT '{name:"执行方法错误信息"}',
+  `gmt_create`   DATETIME   NOT NULL COMMENT '{name:"创建时间"}',
+  `gmt_modify`   TIMESTAMP  DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '{name:"更新时间"}',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

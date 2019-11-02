@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
@@ -18,9 +17,8 @@ import lombok.experimental.Accessors;
  * @since 2019-09-21
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysRole implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID=1L;
     public static final String ID = "id";
