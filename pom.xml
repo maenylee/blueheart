@@ -53,13 +53,13 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
+        <!-- mybatis-plus end -->
         <!-- shiro -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
             <version>${shiro-spring}</version>
         </dependency>
-        <!-- mybatis-plus end -->
         <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>

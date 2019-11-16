@@ -9,6 +9,7 @@
  */
 package com.heart.blue.manage.controller;
 
+import com.heart.blue.annotation.AppLogInfo;
 import com.heart.blue.config.ShiroUtils;
 import com.heart.blue.manage.entity.User;
 import org.apache.shiro.SecurityUtils;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
+
     @RequestMapping(value = {"/","/login"})
     public String login(){
         return "login";
@@ -47,7 +49,7 @@ public class LoginController {
         return mv;
     }
 
-
+    @AppLogInfo("登录接口")
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
     public String doLogin(String username, String password){
         System.err.println("登录中...");
@@ -60,7 +62,7 @@ public class LoginController {
         }catch (Exception e){
             System.err.println("认证失败！");
         }
-        return "login";
+        return "redirect:/login";
     }
 
 }

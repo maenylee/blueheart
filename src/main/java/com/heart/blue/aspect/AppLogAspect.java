@@ -11,11 +11,21 @@ package com.heart.blue.aspect;
 
 import com.heart.blue.annotation.AppLogInfo;
 import com.heart.blue.manage.entity.Log;
+import com.heart.blue.manage.service.ILogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Date;
 
 
 /**
@@ -29,6 +39,11 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class AppLogAspect {
+
+    @Autowired
+    private ILogService logService;
+
+    private Logger logger = LoggerFactory.getLogger(AppLogAspect.class);
 
     /**
      * 根据注解进行切面，不获取注解实例
@@ -55,7 +70,7 @@ public class AppLogAspect {
         }
         //方法执行后
         Long endTime = System.currentTimeMillis();
-        this.saveLogInfo(startTime,endTime,appLogInfo,errorMessage);
+        this.saveLogInfo(startTime,endTime,appLogInfo,errorMessage,point);
         return result;
     }
 
@@ -65,12 +80,37 @@ public class AppLogAspect {
      * @param endTime     方法执行之后时间
      * @param appLogInfo  注解实例对象
      */
-    public void saveLogInfo(Long startTime,Long endTime,AppLogInfo appLogInfo,String errorMessage){
+    public void saveLogInfo(Long startTime,Long endTime,AppLogInfo appLogInfo,String errorMessage,ProceedingJoinPoint point){
         Log log = new Log();
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        //获取请求路径
+        String requestUrl = request.getServletPath();
+        //获取请求主机IP
+        String ipAddr = request.getRemoteAddr();
         //执行时间秒数
         Long duration = (endTime - startTime)/1000;
         //方法描述
         String methodDesc = appLogInfo.value();
+        //获取方法请求参数
+        Object[] params = point.getArgs();
+        System.err.println(Arrays.toString(params));
+        //获取类名称
+        String className = point.getTarget().getClass().getName();
+        //获取方法名称
+        String methodName = point.getSignature().getName();
+        log.setErrorMessage(errorMessage).
+                setExecTime(duration.intValue())
+                .setGmtCreate(new Date())
+                .setMethodDesc(methodDesc)
+                .setMethodName(methodName)
+                .setRequestIp(ipAddr).setRequestUrl(requestUrl)
+                .setRequestParam(Arrays.toString(params));
+        try {
+            logService.insert(log);
+        }catch (Exception e){
+            logger.error("操作日志添加异常！错误信息：{}",e.getMessage());
+        }
     }
 
 }

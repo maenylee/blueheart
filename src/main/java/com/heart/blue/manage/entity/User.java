@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
  * @since 2019-08-23
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("tb_user")
 public class User implements Serializable {
 
     private static final long serialVersionUID=1L;
