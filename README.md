@@ -1,14 +1,14 @@
 # blueheart
 还没想好整什么，搭个架子玩哦  
-####新建springboot项目  
-![](https://github.com/maenylee/blueheart/raw/master/other/创建.png,"新建")  
-![](https://github.com/maenylee/blueheart/raw/master/other/创建1.png,"Spring Initializr")  
-![](https://github.com/maenylee/blueheart/raw/master/other/创建2.png,"GVA")  
-![](https://github.com/maenylee/blueheart/raw/master/other/创建3.png,"集成工具")  
-![](https://github.com/maenylee/blueheart/raw/master/other/创建4.png,"项目配置")  
-![](https://github.com/maenylee/blueheart/raw/master/other/项目结构.png,"项目结构")  
-####配置数据源  
-######依赖  
+#### 新建springboot项目  
+![图片](https://github.com/maenylee/blueheart/raw/master/other/创建.png)  
+![图片](https://github.com/maenylee/blueheart/raw/master/other/创建1.png)  
+![图片](https://github.com/maenylee/blueheart/raw/master/other/创建2.png)  
+![图片](https://github.com/maenylee/blueheart/raw/master/other/创建3.png)  
+![图片](https://github.com/maenylee/blueheart/raw/master/other/创建4.png)  
+![图片](https://github.com/maenylee/blueheart/raw/master/other/项目结构.png)  
+#### 配置数据源  
+###### 依赖  
 ```
 <!-- Lombok：以注解的方式优化javabean代码 -->
 <dependency>
@@ -33,7 +33,7 @@
     <artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
 ```
-######application.yml配置  
+###### application.yml配置  
 ```
 spring:
   mvc:
@@ -51,8 +51,8 @@ spring:
     password: xxxx
     driver-class-name: com.mysql.jdbc.Driver
 ```
-####集成Mybatis plus    
-######导如依赖  
+#### 集成Mybatis plus    
+###### 导如依赖  
 ```
 <dependencies>
   <dependency>
@@ -74,7 +74,7 @@ spring:
   </resources>
 </build>
 ```
-######Mybatis plus配置  
+###### Mybatis plus配置  
 ```
 mybatis-plus:
   # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
@@ -105,4 +105,4 @@ mybatis-plus:
     #配置JdbcTypeForNull, oracle数据库必须配置
     #jdbc-type-for-null: 'null'
 ```
-#####分页插件配置  
+##### 分页插件配置  
