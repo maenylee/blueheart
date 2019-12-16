@@ -45,6 +45,7 @@ public class ShiroConfig {
         Map<String,String> filterChainMap = new LinkedHashMap<>();
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainMap.put("/static/**", "anon");
+        filterChainMap.put("/druid/**", "anon");
         filterChainMap.put("/login", "anon");
         filterChainMap.put("/", "anon");
         filterChainMap.put("/doLogin", "anon");

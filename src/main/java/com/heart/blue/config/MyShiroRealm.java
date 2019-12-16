@@ -58,6 +58,10 @@ public class MyShiroRealm extends AuthorizingRealm {
         User user = (User) ShiroUtils.getAttribute("user");
         //根据用户ID获取用户角色标识
         List<Role> sysRoles = roleService.listRoles(user.getId());
+        //用户无角色，未授权
+        if(sysRoles.size() == 0){
+            return simpleAuthorizationInfo;
+        }
         List<String> roleTypes = sysRoles.stream().map(item->item.getRoleType()).collect(Collectors.toList());
         System.err.println(roleTypes.toString());
         simpleAuthorizationInfo.addRoles(roleTypes);

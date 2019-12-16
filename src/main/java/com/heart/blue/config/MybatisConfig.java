@@ -10,6 +10,7 @@
 package com.heart.blue.config;
 
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,24 +34,11 @@ public class MybatisConfig {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         return paginationInterceptor;
     }
-    /*
-    * oracle数据库配置JdbcTypeForNull
-    * 参考：https://gitee.com/baomidou/mybatisplus-boot-starter/issues/IHS8X
-    不需要这样配置了，参考 yml:
-    mybatis-plus:
-      confuguration
-        dbc-type-for-null: 'null'
-   @Bean
-   public ConfigurationCustomizer configurationCustomizer(){
-       return new MybatisPlusCustomizers();
-   }
-
-   class MybatisPlusCustomizers implements ConfigurationCustomizer {
-
-       @Override
-       public void customize(org.apache.ibatis.session.Configuration configuration) {
-           configuration.setJdbcTypeForNull(JdbcType.NULL);
-       }
-   }
-   */
+    /**
+     * SQL执行效率插件
+     */
+    @Bean
+    public PerformanceInterceptor performanceInterceptor() {
+        return new PerformanceInterceptor();
+    }
 }

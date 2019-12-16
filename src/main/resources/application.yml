@@ -1,6 +1,24 @@
 server:
-  port: 9091
+  port: 9099
   address: 0.0.0.0
+
+
+## 默认的数据源
+cluster:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springBoot?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
+
+
+  ## 另一个的数据源
+master:
+  datasource:
+    url: jdbc:mysql://172.16.0.34:3306/blueheart?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: 2011
+    driverClassName: com.mysql.jdbc.Driver
 
 spring:
   mvc:
@@ -12,11 +30,30 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
   datasource:
-    url: jdbc:mysql://172.16.0.34:3306/blueheart?useUnicode=true&characterEncoding=utf8
-    #url: jdbc:postgresql://172.16.0.34:5432/postgres
-    username: root
-    password: 2011
-    driver-class-name: com.mysql.jdbc.Driver
+    # 连接池的配置信息
+    # 初始化大小，最小，最大
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
 
 mybatis-plus:
   # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
@@ -46,3 +83,6 @@ mybatis-plus:
     cache-enabled: false
     #配置JdbcTypeForNull, oracle数据库必须配置
     #jdbc-type-for-null: 'null'
+logging:
+  level:
+    root: info

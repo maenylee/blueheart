@@ -106,3 +106,31 @@ mybatis-plus:
     #jdbc-type-for-null: 'null'
 ```
 ##### 分页插件配置  
+```
+package com.heart.blue.config;
+
+import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * 〈一句话功能简述〉<br> 
+ * 〈mybatis plus相关配置〉
+ *
+ * @author Danny
+ * @since 1.0.0
+ */
+@Configuration
+@MapperScan("com.heart.blue.*.dao")
+public class MybatisConfig {
+    /**
+     * 分页插件
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        return paginationInterceptor;
+    }
+}
+```
